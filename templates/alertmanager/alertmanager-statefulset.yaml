@@ -9,6 +9,7 @@ metadata:
     {{- include "cortex.alertmanagerLabels" . | nindent 4 }}
     app.kubernetes.io/part-of: memberlist
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.alertmanager.annotations | nindent 4 }}
 spec:
   replicas: {{ .Values.alertmanager.replicas }}

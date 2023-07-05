@@ -8,6 +8,7 @@ metadata:
     {{- include "cortex.ingesterLabels" . | nindent 4 }}
     app.kubernetes.io/part-of: memberlist
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.ingester.annotations | nindent 4 }}
 spec:
   {{- if not .Values.ingester.autoscaling.enabled }}
@@ -26,6 +27,7 @@ spec:
         name: storage
         {{- if .Values.ingester.persistentVolume.annotations }}
         annotations:
+          janitor/ttl: "{{ .Values.ttl }}"
           {{ toYaml .Values.ingester.persistentVolume.annotations | nindent 10 }}
         {{- end }}
       spec:

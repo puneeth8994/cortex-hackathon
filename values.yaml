@@ -35,6 +35,8 @@ useExternalConfig: false
 externalConfigSecretName: 'secret-with-config.yaml'
 externalConfigVersion: '0'
 
+ttl: forever
+
 config:
   auth_enabled: false
   api:

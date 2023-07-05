@@ -8,6 +8,8 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "cortex.rulerLabels" $ | nindent 4 }}
+  annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
 data:
   {{- toYaml $files | nindent 2}}
 {{- end }}

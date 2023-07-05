@@ -7,6 +7,7 @@ metadata:
   labels:
     {{- include "cortex.nginxLabels" . | nindent 4 }}
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
 {{- if .Values.ingress.ingressClass.enabled }}

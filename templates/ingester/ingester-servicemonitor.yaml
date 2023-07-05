@@ -11,6 +11,7 @@ metadata:
     {{- end }}
   {{- if .Values.ingester.serviceMonitor.annotations }}
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
 {{ toYaml .Values.ingester.serviceMonitor.annotations | indent 4 }}
   {{- end }}
 spec:

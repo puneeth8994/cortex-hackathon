@@ -6,6 +6,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cortex.distributorLabels" . | nindent 4 }}
+  annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
 spec:
   selector:
     matchLabels:

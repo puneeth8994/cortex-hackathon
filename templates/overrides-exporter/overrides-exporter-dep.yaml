@@ -7,6 +7,7 @@ metadata:
   labels:
     {{- include "cortex.overridesExporterLabels" . | nindent 4 }}
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.overrides_exporter.annotations | nindent 4 }}
 spec:
   replicas: 1
@@ -23,6 +24,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
       annotations:
+        janitor/ttl: "{{ .Values.ttl }}"
       {{- if .Values.useExternalConfig }}
         checksum/config: {{ .Values.externalConfigVersion }}
       {{- else }}

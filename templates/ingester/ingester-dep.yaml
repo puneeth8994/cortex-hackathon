@@ -8,6 +8,7 @@ metadata:
     {{- include "cortex.ingesterLabels" . | nindent 4 }}
     app.kubernetes.io/part-of: memberlist
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.ingester.annotations | nindent 4 }}
 spec:
   {{- if not .Values.ingester.autoscaling.enabled }}
@@ -27,6 +28,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
       annotations:
+        janitor/ttl: "{{ .Values.ttl }}"
         checksum/config: {{ include "cortex.configChecksum" . }}
         {{- with .Values.ingester.podAnnotations }}
         {{- toYaml . | nindent 8 }}

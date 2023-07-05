@@ -9,6 +9,7 @@ metadata:
     {{- include "cortex.labels" $ | nindent 4 }}
   {{- with .annotations }}
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml . | nindent 4 }}
   {{- end }}
 data:

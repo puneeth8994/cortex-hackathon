@@ -9,6 +9,7 @@ metadata:
     {{- include "cortex.compactorLabels" . | nindent 4 }}
     app.kubernetes.io/part-of: memberlist
   annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.compactor.annotations | nindent 4 }}
 spec:
   replicas: {{ .Values.compactor.replicas }}
@@ -49,6 +50,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
       annotations:
+        janitor/ttl: "{{ .Values.ttl }}"
         checksum/config: {{ include "cortex.configChecksum" . }}
         {{- with .Values.compactor.podAnnotations }}
         {{- toYaml . | nindent 8 }}

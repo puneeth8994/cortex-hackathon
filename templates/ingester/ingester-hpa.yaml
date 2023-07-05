@@ -7,6 +7,8 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "cortex.ingesterLabels" $ | nindent 4 }}
+  annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

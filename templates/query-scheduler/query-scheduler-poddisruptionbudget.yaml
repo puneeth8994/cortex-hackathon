@@ -6,6 +6,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cortex.querySchedulerLabels" . | nindent 4 }}
+  annotations:
+    janitor/ttl: "{{ .Values.ttl }}"
 spec:
   selector:
     matchLabels:
