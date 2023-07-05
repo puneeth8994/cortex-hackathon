@@ -186,6 +186,7 @@ alertmanager:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -353,6 +354,7 @@ distributor:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -468,6 +470,7 @@ ingester:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -622,6 +625,7 @@ ruler:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -765,6 +769,7 @@ querier:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -876,6 +881,7 @@ query_frontend:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -966,6 +972,7 @@ query_scheduler:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: 'http-metrics'
 
@@ -1055,6 +1062,7 @@ overrides_exporter:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: 'http-metrics'
 
@@ -1139,6 +1147,7 @@ purger:
   podLabels: {}
 
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -1264,7 +1273,8 @@ nginx:
   podLabels: {}
 
   # -- Pod Annotations
-  podAnnotations: {}
+  podAnnotations:
+    janitor/ttl: '72h'
 
   nodeSelector: {}
   topologySpreadConstraints: []
@@ -1362,6 +1372,7 @@ store_gateway:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
@@ -1496,6 +1507,7 @@ compactor:
 
   # -- Pod Annotations
   podAnnotations:
+    janitor/ttl: '72h'
     prometheus.io/scrape: 'true'
     prometheus.io/port: '8080'
 
