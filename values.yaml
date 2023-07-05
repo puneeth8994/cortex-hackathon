@@ -105,7 +105,6 @@ config:
     join_members:
       - '{{ include "cortex.fullname" $ }}-memberlist'
   querier:
-    replicas: 1
     active_query_tracker_dir: /data/active-query-tracker
     # -- Comma separated list of store-gateway addresses in DNS Service Discovery
     # format. This option should is set automatically when using the blocks storage and the
