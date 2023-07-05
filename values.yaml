@@ -28,7 +28,7 @@ serviceAccount:
   create: true
   name: cortex-hackathon
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
   automountServiceAccountToken: true
 
 useConfigMap: false
@@ -151,7 +151,7 @@ alertmanager:
   enabled: true
   replicas: 1
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
 
   statefulSet:
     # -- If true, use a statefulset instead of a deployment for pod management.
@@ -160,7 +160,7 @@ alertmanager:
 
   service:
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
     labels: {}
 
   serviceAccount:
@@ -322,13 +322,13 @@ distributor:
   enabled: true
   replicas: 2
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
 
   service:
     annotations: {}
     labels: {}
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
 
   serviceAccount:
     # -- "" disables the individual serviceAccount and uses the global serviceAccount for that component
@@ -432,7 +432,7 @@ ingester:
   enabled: true
   replicas: 3
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
 
   statefulSet:
     # -- If true, use a statefulset instead of a deployment for pod management.
@@ -443,7 +443,7 @@ ingester:
 
   service:
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
     labels: {}
 
   serviceAccount:
@@ -735,11 +735,11 @@ querier:
   enabled: true
   replicas: 2
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
 
   service:
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
     labels: {}
 
   serviceAccount:
@@ -846,11 +846,11 @@ query_frontend:
   enabled: true
   replicas: 2
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
 
   service:
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
     labels: {}
 
   serviceAccount:
@@ -1197,7 +1197,7 @@ purger:
 
 nginx:
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
   enabled: true
   replicas: 2
   http_listen_port: 80
@@ -1248,7 +1248,7 @@ nginx:
   service:
     type: ClusterIP
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
     labels: {}
 
   serviceAccount:
@@ -1332,11 +1332,11 @@ store_gateway:
   podManagementPolicy: OrderedReady
 
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
 
   service:
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
     labels: {}
 
   serviceAccount:
@@ -1463,13 +1463,13 @@ store_gateway:
 compactor:
 
   annotations:
-    janitor/ttl: "150h"
+    janitor/ttl: "72h"
   enabled: true
   replicas: 1
 
   service:
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
 
     labels: {}
 
@@ -1677,5 +1677,5 @@ memcached-blocks-metadata:
 memberlist:
   service:
     annotations:
-      janitor/ttl: "150h"
+      janitor/ttl: "72h"
     labels: {}
