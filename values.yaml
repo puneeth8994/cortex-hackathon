@@ -788,8 +788,6 @@ querier:
                     - querier
             topologyKey: 'kubernetes.io/hostname'
 
-  annotations: {}
-
   autoscaling:
     # -- Creates a HorizontalPodAutoscaler for the querier pods.
     enabled: false
