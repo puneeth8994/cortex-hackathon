@@ -8,7 +8,6 @@ metadata:
     {{- include "cortex.storeGatewayLabels" . | nindent 4 }}
     app.kubernetes.io/part-of: memberlist
   annotations:
-    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.store_gateway.annotations | nindent 4 }}
 spec:
   replicas: {{ .Values.store_gateway.replicas }}

@@ -7,7 +7,6 @@ metadata:
   labels:
     {{- include "cortex.queryFrontendLabels" . | nindent 4 }}
   annotations:
-    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.query_frontend.annotations | nindent 4 }}
 spec:
   replicas: {{ .Values.query_frontend.replicas }}

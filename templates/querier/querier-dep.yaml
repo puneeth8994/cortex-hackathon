@@ -7,7 +7,6 @@ metadata:
   labels:
     {{- include "cortex.querierLabels" . | nindent 4 }}
   annotations:
-    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.querier.annotations | nindent 4 }}
 spec:
   {{- if not .Values.querier.autoscaling.enabled }}
@@ -26,7 +25,6 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
       annotations:
-        janitor/ttl: "{{ .Values.ttl }}"
         checksum/config: {{ include "cortex.configChecksum" . }}
         {{- with .Values.querier.podAnnotations }}
         {{- toYaml . | nindent 8 }}

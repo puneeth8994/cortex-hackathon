@@ -10,7 +10,6 @@ metadata:
     {{- toYaml . | nindent 4 }}
     {{- end }}
   annotations:
-    janitor/ttl: "{{ .Values.ttl }}"
     {{- toYaml .Values.ingester.service.annotations | nindent 4 }}
 spec:
   type: ClusterIP

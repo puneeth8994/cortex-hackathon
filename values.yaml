@@ -27,7 +27,8 @@ ingress:
 serviceAccount:
   create: true
   name: cortex-hackathon
-  annotations: {}
+  annotations:
+    janitor/ttl: "150h"
   automountServiceAccountToken: true
 
 useConfigMap: false
@@ -104,6 +105,7 @@ config:
     join_members:
       - '{{ include "cortex.fullname" $ }}-memberlist'
   querier:
+    replicas: 1
     active_query_tracker_dir: /data/active-query-tracker
     # -- Comma separated list of store-gateway addresses in DNS Service Discovery
     # format. This option should is set automatically when using the blocks storage and the
@@ -148,6 +150,8 @@ runtimeconfigmap:
 alertmanager:
   enabled: true
   replicas: 1
+  annotations:
+    janitor/ttl: "150h"
 
   statefulSet:
     # -- If true, use a statefulset instead of a deployment for pod management.
@@ -155,7 +159,8 @@ alertmanager:
     enabled: false
 
   service:
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
     labels: {}
 
   serviceAccount:
@@ -187,7 +192,6 @@ alertmanager:
   nodeSelector: {}
   topologySpreadConstraints: []
   affinity: {}
-  annotations: {}
 
   persistentVolume:
     # -- If true and alertmanager.statefulSet.enabled is true,
@@ -317,10 +321,14 @@ alertmanager:
 distributor:
   enabled: true
   replicas: 2
+  annotations:
+    janitor/ttl: "150h"
 
   service:
     annotations: {}
     labels: {}
+    annotations:
+      janitor/ttl: "150h"
 
   serviceAccount:
     # -- "" disables the individual serviceAccount and uses the global serviceAccount for that component
@@ -362,8 +370,6 @@ distributor:
                   values:
                     - distributor
             topologyKey: 'kubernetes.io/hostname'
-
-  annotations: {}
 
   autoscaling:
     # -- Creates a HorizontalPodAutoscaler for the distributor pods.
@@ -425,6 +431,8 @@ distributor:
 ingester:
   enabled: true
   replicas: 3
+  annotations:
+    janitor/ttl: "150h"
 
   statefulSet:
     # -- If true, use a statefulset instead of a deployment for pod management.
@@ -434,7 +442,8 @@ ingester:
     podManagementPolicy: OrderedReady
 
   service:
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
     labels: {}
 
   serviceAccount:
@@ -476,8 +485,6 @@ ingester:
                   values:
                     - ingester
             topologyKey: 'kubernetes.io/hostname'
-
-  annotations: {}
 
   autoscaling:
     enabled: false
@@ -727,9 +734,12 @@ ruler:
 querier:
   enabled: true
   replicas: 2
+  annotations:
+    janitor/ttl: "150h"
 
   service:
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
     labels: {}
 
   serviceAccount:
@@ -835,9 +845,12 @@ querier:
 query_frontend:
   enabled: true
   replicas: 2
+  annotations:
+    janitor/ttl: "150h"
 
   service:
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
     labels: {}
 
   serviceAccount:
@@ -881,7 +894,6 @@ query_frontend:
                     - query-frontend
             topologyKey: 'kubernetes.io/hostname'
 
-  annotations: {}
   persistentVolume:
     subPath:
 
@@ -1184,6 +1196,8 @@ purger:
       port: http-metrics
 
 nginx:
+  annotations:
+    janitor/ttl: "150h"
   enabled: true
   replicas: 2
   http_listen_port: 80
@@ -1233,7 +1247,8 @@ nginx:
 
   service:
     type: ClusterIP
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
     labels: {}
 
   serviceAccount:
@@ -1254,7 +1269,6 @@ nginx:
   nodeSelector: {}
   topologySpreadConstraints: []
   affinity: {}
-  annotations: {}
   persistentVolume:
     subPath:
 
@@ -1317,8 +1331,12 @@ store_gateway:
   # -- https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies
   podManagementPolicy: OrderedReady
 
+  annotations:
+    janitor/ttl: "150h"
+
   service:
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
     labels: {}
 
   serviceAccount:
@@ -1361,8 +1379,6 @@ store_gateway:
                   values:
                     - store-gateway
             topologyKey: 'kubernetes.io/hostname'
-
-  annotations: {}
 
   autoscaling:
     enabled: false
@@ -1445,11 +1461,16 @@ store_gateway:
   env: []
 
 compactor:
+
+  annotations:
+    janitor/ttl: "150h"
   enabled: true
   replicas: 1
 
   service:
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
+
     labels: {}
 
   serviceAccount:
@@ -1492,8 +1513,6 @@ compactor:
                   values:
                     - compactor
             topologyKey: 'kubernetes.io/hostname'
-
-  annotations: {}
 
   persistentVolume:
     # -- If true compactor will create/use a Persistent Volume Claim
@@ -1657,5 +1676,6 @@ memcached-blocks-metadata:
 
 memberlist:
   service:
-    annotations: {}
+    annotations:
+      janitor/ttl: "150h"
     labels: {}
